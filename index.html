@@ -924,6 +924,80 @@
             }
         }
 
+        @keyframes fadeOutIntro {
+            to { opacity: 0; display: none; pointer-events: none; }
+        }
+
+        @keyframes fadeInMain {
+            to { opacity: 1; }
+        }
+
+        @keyframes loadProgress {
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes haloPulse {
+            from { box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(255, 204, 0, 0.15); }
+            to { box-shadow: 0 0 25px var(--accent), 0 0 50px rgba(255, 204, 0, 0.25); }
+        }
+
+        @keyframes starRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shockWave {
+            from { 
+                width: 250px; 
+                height: 250px; 
+                opacity: 1; 
+                transform: scale(0.8);
+            }
+            to { 
+                width: 450px; 
+                height: 450px; 
+                opacity: 0; 
+                transform: scale(1.5);
+            }
+        }
+
+        @media (min-width: 768px) {
+            @keyframes shockWave {
+                from { 
+                    width: 340px; 
+                    height: 340px; 
+                    opacity: 1; 
+                    transform: scale(0.8);
+                }
+                to { 
+                    width: 600px; 
+                    height: 600px; 
+                    opacity: 0; 
+                    transform: scale(1.8);
+                }
+            }
+        }
+
+        @keyframes speakerPunch {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        @keyframes deckVibe {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-2px); }
+        }
+
+        @keyframes pulseText {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
         /* TABLA DE CRÉDITOS */
         .credits-board {
             width: 100%; max-width: 720px;
@@ -1000,144 +1074,96 @@
             }
         }
 
+        .credit-item:hover .credit-label {
+            color: #888;
+        }
+
         .credit-value {
-            color: #fff; font-weight: 800; font-size: 0.95rem;
+            color: #999; margin-top: 4px;
+            font-size: 0.8rem; font-weight: 600;
             transition: color 0.2s;
-            margin-top: 3px;
         }
 
-        @media (min-width: 768px) {
-            .credit-value {
-                font-size: 1.1rem;
-                margin-top: 4px;
-            }
-        }
-        
-        .credit-item:hover .credit-label { color: #ccc; }
         .credit-item:hover .credit-value { color: var(--secondary); }
-
-        /* LLAVES DE ANIMACIONES CSS */
-        @keyframes loadProgress { to { width: 100%; } }
-        @keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-        @keyframes fadeInMain { to { opacity: 1; } }
-        @keyframes blink { from { opacity: 0.1; } to { opacity: 1; } }
-        @keyframes pulseText { from { opacity: 0.4; } to { opacity: 1; } }
-        
-        @keyframes haloPulse {
-            0% { transform: translateX(-50%) rotate(-3deg) scale(0.96); filter: brightness(0.85); }
-            100% { transform: translateX(-50%) rotate(-2deg) scale(1.02); filter: brightness(1.1); }
-        }
-        @keyframes starRotate {
-            0% { transform: rotate(0deg) scale(0.95); }
-            50% { transform: rotate(180deg) scale(1.05); }
-            100% { transform: rotate(360deg) scale(0.95); }
-        }
-        @keyframes speakerPunch {
-            0% { transform: scale(1); filter: contrast(0.95); }
-            100% { transform: scale(1.07); filter: contrast(1.3); }
-        }
-        @keyframes deckVibe {
-            0% { transform: translate(0.5px, 0.5px) rotate(0deg); }
-            100% { transform: translate(-0.5px, -0.5px) rotate(0.3deg); }
-        }
-        @keyframes shockWave {
-            0% { transform: scale(0.95); opacity: 0.8; border-color: var(--primary); }
-            100% { transform: scale(1.25); opacity: 0; border-color: var(--secondary); }
-        }
-
-        @media (max-width: 480px) {
-            #particles-canvas { display: none; }
-            body::after { background-size: 100% 6px, 12px 100%; opacity: 0.5; }
-        }
     </style>
 </head>
 <body>
-
     <canvas id="particles-canvas"></canvas>
-
-    <!-- INTRO DE ESTUDIO -->
+    
     <div class="intro-splash">
         <div class="studio-monitor">
-            <div class="intro-text">
-                MAURISPIDE<br>
-                <span style="font-size: 1.1rem; color: #444; font-family: 'Space Grotesk'; font-weight:800; letter-spacing: 3px;">INITIALIZING 7-TRACK ENGINE</span><br>
-                LAIP.I COLLECTIVE
-            </div>
-            <div class="loading-bar-container">
-                <div class="loading-bar"></div>
-            </div>
+            <div class="intro-text">Yo Soy</div>
+            <div class="loading-bar-container"><div class="loading-bar"></div></div>
         </div>
     </div>
 
-    <!-- INTERFAZ COMPLETA -->
     <div class="main-container">
-        
-        <header class="graffiti-header">
+        <div class="graffiti-header">
+            <div class="street-star star-left">⭐</div>
+            <div class="street-star star-right">⭐</div>
             <div class="graffiti-halo"></div>
-            <div class="street-star star-left">★</div>
-            <div class="street-star star-right">★</div>
-            <h1 class="graffiti-title">Yo Soy MauriSpide</h1>
-            <center><div class="tagline-sencillo">PRIMER SENCILLO</div></center>
-        </header>
+            <h1 class="graffiti-title">Yo Soy<br>MauriSpide</h1>
+            <div class="tagline-sencillo">7 Frecuencias Urbanas</div>
+        </div>
 
-        <!-- AREA DE TRABAJO ACÚSTICA REACTIVA -->
-        <div class="sound-system-area" id="sound-area">
-            
-            <div class="bass-wave-layer" id="shock-wave"></div>
-
-            <!-- Bocina Izquierda -->
-            <div class="speaker-box" id="speaker-left">
-                <div class="speaker-housing design-1" id="housing-left">
+        <div class="sound-system-area">
+            <div class="bass-wave-layer"></div>
+            <div class="speaker-box bass-vibe-speakers" data-design="1">
+                <div class="speaker-housing design-1">
                     <div class="cone-top"></div>
                     <div class="cone-bottom"></div>
                 </div>
             </div>
-
-            <!-- Cubierta de Tornamesa -->
-            <div class="turntable-deck" id="turntable-deck">
-                <div class="turntable-arm" id="turntable-arm"></div>
+            <div class="speaker-box" data-design="2">
+                <div class="speaker-housing design-2">
+                    <div class="cone-top"></div>
+                    <div class="cone-bottom"></div>
+                </div>
+            </div>
+            <div class="turntable-deck">
+                <div class="turntable-arm"></div>
                 <div class="vinyl-wrapper">
-                    <div class="vinyl" id="interactive-vinyl">
+                    <div class="vinyl">
                         <div class="vinyl-center">
-                            <div class="vinyl-center-art">Mauri<br><span style="color:var(--secondary); font-size:0.75rem;">SPIDE</span></div>
+                            <div class="vinyl-center-art">MAURI<br>SPIDE</div>
                         </div>
-                        <div class="vinyl-hole"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- Bocina Derecha -->
-            <div class="speaker-box" id="speaker-right">
-                <div class="speaker-housing design-1" id="housing-right">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
+            <div class="speaker-box" data-design="3">
+                <div class="speaker-housing design-3">
+                    <div class="pad pad-active"></div>
+                    <div class="pad"></div>
+                    <div class="pad"></div>
+                    <div class="pad pad-active"></div>
                 </div>
             </div>
-
+            <div class="speaker-box" data-design="4">
+                <div class="speaker-housing design-4">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- DISPLAY DINÁMICO DE 7 SECCIONES -->
-        <section class="rapper-bio-panel" id="bio-panel">
-            <div class="panel-decorator dec-top-left">★</div>
-            <div class="panel-decorator dec-bottom-right">✦</div>
+        <div class="rapper-bio-panel">
+            <div class="panel-decorator dec-top-left">◆</div>
+            <div class="panel-decorator dec-bottom-right">◆</div>
             <div class="bio-title">
-                <span id="bio-header">FRECUENCIA #1: ORIGEN DEL TRACK</span>
-                <span class="section-badge" id="section-counter">1 / 7</span>
+                Sección 1 <span class="section-badge">Premium</span>
             </div>
-            <div class="bio-text" id="bio-content">
-                MauriSpide, representante del rap Mexicano, emergente desde el Estado de México llega con su primer sencillo "Yo soy MauriSpide" de la mano de LAIP.I Music Songs.
-            </div>
-            <div class="hint-tag">🎛️ GIRA O HAZ SCRATCH EN EL VINILO PARA CONMUTAR 🎛️</div>
-        </section>
+            <p class="bio-text">Bienvenido a Yo Soy MauriSpide - 7 Frecuencias Urbanas. Un proyecto revolucionario que fusiona la cultura del hip-hop con la tecnología digital.</p>
+            <span class="hint-tag">→ Click para más</span>
+        </div>
 
-        <!-- CONTADOR INDUSTRIAL -->
         <div class="countdown-container">
             <div class="panel-decorator dec-top-left">✦</div>
-            <div class="panel-decorator dec-bottom-right">★</div>
-            <div class="countdown-title">Tiempo restante para la detonación en plataformas</div>
-            <div class="timer" id="countdown-timer">
+            <div class="panel-decorator dec-bottom-right">✦</div>
+            <div class="countdown-title">Lanzamiento en</div>
+            <div class="timer">
                 <div class="time-segment">
-                    <div class="time-number" id="days">37</div>
+                    <div class="time-number" id="days">00</div>
                     <div class="time-label">Días</div>
                 </div>
                 <div class="time-segment">
@@ -1155,327 +1181,145 @@
             </div>
         </div>
 
-        <!-- SECCIÓN FIJA DE CRÉDITOS EJECUTIVOS -->
-        <footer class="credits-board">
+        <div class="credits-board">
             <div class="credits-grid">
-                <div class="credit-item"><span class="credit-label">Autor Principal</span><div class="credit-value">MauriSpide</div></div>
-                <div class="credit-item"><span class="credit-label">Composición</span><div class="credit-value">MaurSpide</div></div>
-                <div class="credit-item"><span class="credit-label">Ing. de Mezcla</span><div class="credit-value" style="color:var(--accent);">Mau (Mcra.FtS)</div></div>
-                <div class="credit-item"><span class="credit-label">Dirección Artística</span><div class="credit-value">LAIP.I Collective</div></div>
-                <div class="credit-item"><span class="credit-label">Distribuidora</span><div class="credit-value" style="color:var(--secondary);">LAIP.I Music Songs</div></div>
+                <div class="credit-item">
+                    <div class="credit-label">Artista</div>
+                    <div class="credit-value">MauriSpide</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Producción</div>
+                    <div class="credit-value">7 Tracks</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Estilo</div>
+                    <div class="credit-value">Hip-Hop</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Lanzamiento</div>
+                    <div class="credit-value">15 Junio</div>
+                </div>
             </div>
-        </footer>
-
+        </div>
     </div>
 
     <script>
-        // Detectar capacidades del navegador
-        const isLowEndDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                               (window.devicePixelRatio < 1.5 && navigator.hardwareConcurrency < 4);
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // === 0. CONFIGURACIÓN DE FECHA REAL ===
-        const getReleaseDate = () => {
-            // Lee la fecha de localStorage o crea una nueva
-            let storedDate = localStorage.getItem('maurispide_release_date');
-            if (!storedDate) {
-                const now = new Date();
-                const releaseDate = new Date(now.getTime() + (37 * 24 * 60 * 60 * 1000));
-                storedDate = releaseDate.toISOString();
-                localStorage.setItem('maurispide_release_date', storedDate);
-            }
-            return new Date(storedDate);
-        };
-        const targetDate = getReleaseDate().getTime();
-
-        // === 1. ARQUITECTURA DE LAS 7 SECCIONES INFORMATIVAS ===
-        const infoSections = [
-            {
-                title: "FRECUENCIA #1: ORIGEN DE LA ESCENA",
-                text: "MauriSpide, representante del rap Mexicano, emergente desde el Estado de México llega con su primer sencillo \"Yo soy MauriSpide\" de la mano de LAIP.I Music Songs."
-            },
-            {
-                title: "FRECUENCIA #2: FILOSOFÍA DE BARRIO",
-                text: "Inspirado de barras crudas y callejeras viene a representar su convicción en el hip-hop, retratando la realidad acústica del asfalto mexiquense."
-            },
-            {
-                title: "FRECUENCIA #3: ARQUITECTURA DEL BEAT",
-                text: "Respaldado en las frecuencias y arreglos duros por Mau (Mcra.FtS), inyectando samples oscuros de la vieja escuela y un bajo pesado que hace templar las estructuras."
-            },
-            {
-                title: "FRECUENCIA #4: COLECTIVO DE VANGUARDIA",
-                text: "El soporte conceptual y la identidad visual corre por cuenta de LAIP.I Collective, fusionando la esencia del graffiti ilegal con el diseño gráfico de alto nivel técnico."
-            },
-            {
-                title: "FRECUENCIA #5: INGENIERÍA DE AUDIO",
-                text: "El track cuenta con un tratamiento sonoro agresivo y pulido, diseñado minuciosamente para retumbar tanto en audífonos de calle como en los monitores de un auto."
-            },
-            {
-                title: "FRECUENCIA #6: LANZAMIENTO GLOBAL",
-                text: "La distribución corre por parte de LAIP.I Music Songs, asegurando la salida simultánea en todas las plataformas de streaming digital del planeta de forma masiva."
-            },
-            {
-                title: "FRECUENCIA #7: LA CUENTA REGRESIVA",
-                text: "Los motores están encendidos, las maquetas cerradas y el trono listo para ser reclamado por MauriSpide en la fecha prevista."
-            }
-        ];
-        
-        let currentSectionIdx = 0;
-        const bioContent = document.getElementById('bio-content');
-        const bioHeader = document.getElementById('bio-header');
-        const sectionBadge = document.getElementById('section-counter');
-
-        function triggerNextSection() {
-            currentSectionIdx = (currentSectionIdx + 1) % infoSections.length;
+        // SINCRONIZACIÓN GLOBAL DEL CONTADOR - UTC COORDINADO
+        function updateCountdown() {
+            // Fecha de lanzamiento: 15 de Junio de 2026 a las 3 PM Hora México (21:00 UTC)
+            // México está en UTC-6 (CST), así que 3 PM en México = 9 PM UTC
+            const launchDate = new Date('2026-06-15T21:00:00Z').getTime();
             
-            bioContent.style.opacity = 0;
-            if (!prefersReducedMotion) {
-                bioContent.style.transform = "translateY(5px)";
-            }
+            // Obtén el tiempo actual en UTC
+            const nowUTC = new Date().getTime();
             
-            setTimeout(() => {
-                bioHeader.innerText = infoSections[currentSectionIdx].title;
-                bioContent.innerText = infoSections[currentSectionIdx].text;
-                sectionBadge.innerText = `${currentSectionIdx + 1} / 7`;
-                
-                bioContent.style.opacity = 1;
-                if (!prefersReducedMotion) {
-                    bioContent.style.transform = "translateY(0px)";
-                }
-                mutateColors();
-                triggerShockWave();
-            }, prefersReducedMotion ? 0 : 120);
-        }
-
-        // === 2. CAMBIO DE COLORES CROMÁTICO ===
-        const urbanPalettes = [
-            { primary: '#ff0055', secondary: '#00ffcc', accent: '#ffcc00', bg: '#040406' },
-            { primary: '#00ffcc', secondary: '#ff00aa', accent: '#ffffff', bg: '#020606' },
-            { primary: '#ffcc00', secondary: '#0077ff', accent: '#ff3300', bg: '#060502' },
-            { primary: '#b700ff', secondary: '#00ff66', accent: '#ffff00', bg: '#050207' }
-        ];
-        let paletteIdx = 0;
-
-        function mutateColors() {
-            paletteIdx = (paletteIdx + 1) % urbanPalettes.length;
-            const p = urbanPalettes[paletteIdx];
+            // Calcula la diferencia
+            const timeRemaining = launchDate - nowUTC;
             
-            document.documentElement.style.setProperty('--primary', p.primary);
-            document.documentElement.style.setProperty('--secondary', p.secondary);
-            document.documentElement.style.setProperty('--accent', p.accent);
-            document.documentElement.style.setProperty('--bg-dark', p.bg);
-            document.documentElement.style.setProperty('--glow', p.primary);
-
-            const deck = document.getElementById('turntable-deck');
-            deck.style.borderColor = p.primary;
-        }
-
-        function triggerShockWave() {
-            if (prefersReducedMotion) return;
-            const wave = document.getElementById('shock-wave');
-            wave.classList.remove('wave-active');
-            void wave.offsetWidth; 
-            wave.classList.add('wave-active');
-        }
-
-        // === 3. SISTEMA MODULAR DE INTERCAMBIO DE BOCINAS (5 DISEÑOS) ===
-        let currentSpeakerDesign = 1;
-        const totalDesigns = 5;
-        const housingLeft = document.getElementById('housing-left');
-        const housingRight = document.getElementById('housing-right');
-
-        const templates = {
-            1: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
-            2: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
-            3: `<div class="pad pad-active"></div><div class="pad"></div><div class="pad"></div><div class="pad pad-active"></div>`,
-            4: `<div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>`,
-            5: `<div class="core-ring"><div class="core-dot"></div></div>`
-        };
-
-        function cycleSpeakerDesign() {
-            currentSpeakerDesign = (currentSpeakerDesign % totalDesigns) + 1;
-            
-            [housingLeft, housingRight].forEach(housing => {
-                housing.style.opacity = 0;
-                setTimeout(() => {
-                    housing.className = `speaker-housing design-${currentSpeakerDesign}`;
-                    housing.innerHTML = templates[currentSpeakerDesign];
-                    housing.style.opacity = 1;
-                }, prefersReducedMotion ? 0 : 150);
-            });
-            triggerShockWave();
-        }
-
-        const speakerLeft = document.getElementById('speaker-left');
-        const speakerRight = document.getElementById('speaker-right');
-        if (speakerLeft) speakerLeft.addEventListener('click', cycleSpeakerDesign);
-        if (speakerRight) speakerRight.addEventListener('click', cycleSpeakerDesign);
-
-        // === 4. RELOJ REGRESIVO CON TIEMPO REAL ===
-        function updateClock() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            
-            if (diff <= 0) {
-                document.getElementById('days').innerText = '00';
-                document.getElementById('hours').innerText = '00';
-                document.getElementById('minutes').innerText = '00';
-                document.getElementById('seconds').innerText = '00';
+            if (timeRemaining < 0) {
+                // El lanzamiento ya ocurrió
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
                 return;
             }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-        }
-
-        // Actualizar cada segundo (menos frecuente en dispositivos débiles)
-        const updateInterval = isLowEndDevice ? 2000 : 1000;
-        setInterval(updateClock, updateInterval);
-        updateClock();
-
-        // === 5. CONTROLADOR DE VINILO (GIRO + SCRATCH) ===
-        const vinyl = document.getElementById('interactive-vinyl');
-        const arm = document.getElementById('turntable-arm');
-        const soundArea = document.getElementById('sound-area');
-        const deckContainer = document.getElementById('turntable-deck');
-
-        let isInteracting = false;
-        let currentAngle = 0;
-        let startAngle = 0;
-        let lastAngle = 0;
-        let scratchAccumulator = 0;
-
-        function getCenter() {
-            const box = vinyl.getBoundingClientRect();
-            return { x: box.left + box.width/2, y: box.top + box.height/2 };
-        }
-
-        function calculateAngle(px, py) {
-            const center = getCenter();
-            return Math.atan2(py - center.y, px - center.x) * (180 / Math.PI);
-        }
-
-        function startInteraction(e) {
-            isInteracting = true;
-            const x = e.clientX || e.touches[0].clientX;
-            const y = e.clientY || e.touches[0].clientY;
-            startAngle = calculateAngle(x, y) - currentAngle;
-            lastAngle = currentAngle;
-            scratchAccumulator = 0;
             
-            if(arm) arm.style.transform = "rotate(23deg)";
-            soundArea.classList.add('bass-vibe-speakers');
-            if (!prefersReducedMotion) {
-                deckContainer.classList.add('deck-scratch-shake');
+            // Convierte a días, horas, minutos y segundos
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            
+            // Actualiza los elementos del HTML con formato de 2 dígitos
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Ejecuta la función cada segundo
+        setInterval(updateCountdown, 1000);
+
+        // Ejecuta una vez inmediatamente para que no haya retardo
+        updateCountdown();
+
+        // Partículas en canvas
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 0, 85, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        function moveInteraction(e) {
-            if (!isInteracting) return;
-            const x = e.clientX || (e.touches && e.touches[0].clientX);
-            const y = e.clientY || (e.touches && e.touches[0].clientY);
-            
-            const targetA = calculateAngle(x, y);
-            currentAngle = targetA - startAngle;
-            
-            vinyl.style.transform = `rotate(${currentAngle}deg)`;
-            
-            scratchAccumulator += Math.abs(currentAngle - lastAngle);
-            lastAngle = currentAngle;
-
-            if (scratchAccumulator > 150) {
-                triggerNextSection();
-                scratchAccumulator = 0;
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 30; i++) {
+                particles.push(new Particle());
             }
         }
 
-        function endInteraction() {
-            isInteracting = false;
-            if(arm) arm.style.transform = "rotate(14deg)";
-            soundArea.classList.remove('bass-vibe-speakers');
-            deckContainer.classList.remove('deck-scratch-shake');
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animate);
         }
 
-        if (vinyl) {
-            vinyl.addEventListener('mousedown', startInteraction);
-            window.addEventListener('mousemove', moveInteraction);
-            window.addEventListener('mouseup', endInteraction);
-            vinyl.addEventListener('touchstart', startInteraction, { passive: true });
-            window.addEventListener('touchmove', moveInteraction, { passive: false });
-            window.addEventListener('touchend', endInteraction);
-        }
+        initParticles();
+        animate();
 
-        // === 6. MOTOR DE PARTÍCULAS SUBTERRÁNEAS (OPTIMIZADO) ===
-        const cnv = document.getElementById('particles-canvas');
-        if (cnv && !isLowEndDevice && !prefersReducedMotion) {
-            const ctx = cnv.getContext('2d', { alpha: true });
-            let cW = cnv.width = window.innerWidth;
-            let cH = cnv.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
-            window.addEventListener('resize', () => { 
-                cW = cnv.width = window.innerWidth; 
-                cH = cnv.height = window.innerHeight; 
+        // Interactividad de bocinas
+        document.querySelectorAll('.speaker-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const waveLayer = document.querySelector('.bass-wave-layer');
+                waveLayer.classList.remove('wave-active');
+                void waveLayer.offsetWidth; // Trigger reflow
+                waveLayer.classList.add('wave-active');
+                
+                this.classList.toggle('bass-vibe-speakers');
             });
+        });
 
-            const assets = ['♫', '★', '⚡', '✦'];
-            const particleCount = isLowEndDevice ? 15 : 35;
-            const particles = [];
-
-            class UrbanParticle {
-                constructor() { this.init(); this.y = Math.random()*cH; }
-                init() {
-                    this.x = Math.random()*cW; 
-                    this.y = cH + 25;
-                    this.size = Math.random()*8 + 4;
-                    this.speedY = Math.random()*0.5 + 0.2;
-                    this.char = assets[Math.floor(Math.random()*assets.length)];
-                    this.alpha = Math.random()*0.15 + 0.05;
-                }
-                process() { this.y -= this.speedY; if(this.y < -25) this.init(); }
-                render() {
-                    ctx.save(); 
-                    ctx.globalAlpha = this.alpha;
-                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
-                    ctx.font = `700 ${this.size * 1.1}px 'Space Grotesk'`;
-                    ctx.fillText(this.char, this.x, this.y); 
-                    ctx.restore();
-                }
-            }
-
-            for(let i=0; i<particleCount; i++) particles.push(new UrbanParticle());
-
-            let frameCount = 0;
-            const frameSkip = isLowEndDevice ? 2 : 1;
-
-            function coreLoop() {
-                if (!isInteracting) {
-                    currentAngle += 0.35;
-                    const vinyl = document.getElementById('interactive-vinyl');
-                    if (vinyl) {
-                        vinyl.style.transform = `rotate(${currentAngle}deg)`;
-                    }
-                }
-
-                frameCount++;
-                if (frameCount % frameSkip === 0) {
-                    ctx.clearRect(0, 0, cW, cH);
-                    particles.forEach(p => { p.process(); p.render(); });
-                }
-
-                requestAnimationFrame(coreLoop);
-            }
-
-            coreLoop();
-        } else if (cnv) {
-            cnv.style.display = 'none';
-        }
+        // Clic en el vinilo
+        document.querySelector('.vinyl').addEventListener('click', function() {
+            const turntable = document.querySelector('.turntable-deck');
+            turntable.classList.toggle('deck-scratch-shake');
+        });
     </script>
 </body>
 </html>
