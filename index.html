@@ -996,74 +996,12 @@
             letter-spacing: 1px;
         }
 
-        /* COUNTDOWN */
-        .countdown-container {
-            background: var(--panel-bg);
-            border: 2px solid #1a1a26;
-            padding: 18px 40px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @media (min-width: 768px) {
-            .countdown-container {
-                padding: 25px 50px;
-                border-radius: 16px;
-            }
-        }
-
-        .countdown-title {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .timer {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        @media (min-width: 768px) {
-            .timer {
-                gap: 30px;
-            }
-        }
-
-        .time-segment {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .time-number {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .time-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: #aa00ff;
-            margin-top: 4px;
-            letter-spacing: 1px;
-        }
-
-        /* ANIMACIONES */
+        /* ANIMACIONES CSS */
         @keyframes loadProgress { to { width: 100%; } }
         @keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; pointer-events: none; } }
         @keyframes fadeInMain { to { opacity: 1; } }
         @keyframes blink { from { opacity: 0.1; } to { opacity: 1; } }
         @keyframes pulseText { from { opacity: 0.4; } to { opacity: 1; } }
-        
         @keyframes haloPulse {
             0% { transform: translateX(-50%) rotate(-3deg) scale(0.97); filter: brightness(0.9); }
             100% { transform: translateX(-50%) rotate(-2deg) scale(1.03); filter: brightness(1.2); }
@@ -1076,10 +1014,6 @@
         @keyframes speakerPunch {
             0% { transform: scale(1); filter: contrast(1); }
             100% { transform: scale(1.09); filter: contrast(1.4); }
-        }
-        @keyframes deckVibe {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            100% { transform: translate(-1px, -1px) rotate(0.5deg); }
         }
         @keyframes shockWave {
             0% { transform: scale(1); opacity: 0.8; border-color: var(--primary); }
@@ -1106,11 +1040,7 @@
     <!-- INTRO DE ESTUDIO -->
     <div class="intro-splash">
         <div class="studio-monitor">
-            <div class="intro-text">
-                MAURISPIDE<br>
-                <span style="font-size: 1.1rem; color: #444; font-family: 'Space Grotesk'; font-weight:800; letter-spacing: 3px;">INITIALIZING SINGLE ENGINE</span><br>
-                LAIP.I COLLECTIVE
-            </div>
+            <div class="intro-text">MAURISPIDE<br><span style="font-size: 1.1rem; color: #444; font-family: 'Space Grotesk'; font-weight:800; letter-spacing: 3px;">INITIALIZING</span><br>LAIP.I COLLECTIVE</div>
             <div class="loading-bar-container">
                 <div class="loading-bar"></div>
             </div>
@@ -1168,7 +1098,7 @@
             <div class="panel-decorator dec-top-left">★</div>
             <div class="panel-decorator dec-bottom-right">✦</div>
             <div class="bio-title">
-                <span id="bio-header">FRECUENCIA #1: ORIGEN DE LA ESCENA</span>
+                <span id="bio-header">FRECUENCIA #1: ORIGEN DEL TRACK</span>
                 <span class="section-badge" id="section-counter">1 / 7</span>
             </div>
             <div class="bio-text" id="bio-content">
@@ -1177,46 +1107,13 @@
             <div class="hint-tag">🎛️ GIRA O HAZ SCRATCH EN EL VINILO PARA CONMUTAR 🎛️</div>
         </section>
 
-        <!-- CONTADOR INDUSTRIAL -->
-        <div class="countdown-container">
-            <div class="countdown-title">Tiempo restante para la detonación en plataformas</div>
-            <div class="timer" id="countdown-timer">
-                <div class="time-segment">
-                    <div class="time-number" id="days">37</div>
-                    <div class="time-label">Días</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="hours">00</div>
-                    <div class="time-label">Horas</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="minutes">00</div>
-                    <div class="time-label">Minutos</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="seconds">00</div>
-                    <div class="time-label">Segundos</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN FIJA DE CRÉDITOS EJECUTIVOS -->
-        <footer class="credits-section">
-            <div class="credits-title">CRÉDITOS DE PRODUCCIÓN</div>
-            <div class="credit-item"><span class="credit-label">Autor Principal:</span> MauriSpide</div>
-            <div class="credit-item"><span class="credit-label">Composición:</span> MauriSpide</div>
-            <div class="credit-item"><span class="credit-label">Ing. de Mezcla:</span> <span style="color:var(--accent);">Mau (Mcra.FtS)</span></div>
-            <div class="credit-item"><span class="credit-label">Dirección Artística:</span> LAIP.I Collective</div>
-            <div class="credit-item"><span class="credit-label">Distribuidora:</span> <span style="color:var(--secondary);">LAIP.I Music Songs</span></div>
-        </footer>
-
     </div>
 
     <script>
-        // === 1. ARQUITECTURA DE LAS 7 SECCIONES INFORMATIVAS ===
+        // === ARQUITECTURA DE LAS 7 SECCIONES ===
         const infoSections = [
             {
-                title: "FRECUENCIA #1: ORIGEN DE LA ESCENA",
+                title: "FRECUENCIA #1: ORIGEN DEL TRACK",
                 text: "MauriSpide, representante del rap Mexicano, emergente desde el Estado de México llega con su primer sencillo \"Yo soy MauriSpide\" de la mano de LAIP.I Music Songs."
             },
             {
@@ -1268,15 +1165,12 @@
             }, 120);
         }
 
-        // === 2. CAMBIO DE COLORES CROMÁTICO ===
+        // === CAMBIO DE COLORES CROMÁTICO ===
         const urbanPalettes = [
             { primary: '#ff0055', secondary: '#00ffcc', accent: '#ffcc00', bg: '#040406' },
             { primary: '#00ffcc', secondary: '#ff00aa', accent: '#ffffff', bg: '#020606' },
             { primary: '#ffcc00', secondary: '#0077ff', accent: '#ff3300', bg: '#060502' },
-            { primary: '#b700ff', secondary: '#00ff66', accent: '#ffff00', bg: '#050207' },
-            { primary: '#ff6b00', secondary: '#00d4ff', accent: '#ff00ff', bg: '#060302' },
-            { primary: '#00ff88', secondary: '#ff0088', accent: '#ffdd00', bg: '#020606' },
-            { primary: '#ff0044', secondary: '#44ff00', accent: '#0088ff', bg: '#030406' }
+            { primary: '#b700ff', secondary: '#00ff66', accent: '#ffff00', bg: '#050207' }
         ];
         let paletteIdx = 0;
 
@@ -1289,9 +1183,6 @@
             document.documentElement.style.setProperty('--accent', p.accent);
             document.documentElement.style.setProperty('--bg-dark', p.bg);
             document.documentElement.style.setProperty('--glow', p.primary);
-
-            const deck = document.getElementById('turntable-deck');
-            deck.style.borderColor = p.primary;
         }
 
         function triggerShockWave() {
@@ -1301,7 +1192,40 @@
             wave.classList.add('wave-active');
         }
 
-        // === 3. CONTROLADOR DE VINILO (GIRO + SCRATCH) ===
+        // === SISTEMA DE 7 DISEÑOS DE BOCINAS ===
+        let currentSpeakerDesign = 1;
+        const totalDesigns = 7;
+        const housingLeft = document.getElementById('housing-left');
+        const housingRight = document.getElementById('housing-right');
+
+        const templates = {
+            1: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
+            2: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
+            3: `<div class="pad pad-active"></div><div class="pad"></div><div class="pad"></div><div class="pad pad-active"></div>`,
+            4: `<div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>`,
+            5: `<div class="core-ring"><div class="core-dot"></div></div>`,
+            6: `<div class="neon-bar"></div><div class="neon-bar"></div><div class="neon-bar"></div><div class="neon-bar"></div>`,
+            7: `<div class="vinyl-mini"><div class="vinyl-center-mini"></div></div>`
+        };
+
+        function cycleSpeakerDesign() {
+            currentSpeakerDesign = (currentSpeakerDesign % totalDesigns) + 1;
+            
+            [housingLeft, housingRight].forEach(housing => {
+                housing.style.opacity = 0;
+                setTimeout(() => {
+                    housing.className = `speaker-housing design-${currentSpeakerDesign}`;
+                    housing.innerHTML = templates[currentSpeakerDesign];
+                    housing.style.opacity = 1;
+                }, 150);
+            });
+            triggerShockWave();
+        }
+
+        document.getElementById('speaker-left').addEventListener('click', cycleSpeakerDesign);
+        document.getElementById('speaker-right').addEventListener('click', cycleSpeakerDesign);
+
+        // === CONTROLADOR DE VINILO (GIRO + SCRATCH) ===
         const vinyl = document.getElementById('interactive-vinyl');
         const arm = document.getElementById('turntable-arm');
         const soundArea = document.getElementById('sound-area');
@@ -1312,6 +1236,7 @@
         let startAngle = 0;
         let lastAngle = 0;
         let scratchAccumulator = 0;
+        let autoRotateEnabled = true;
 
         function getCenter() {
             const box = vinyl.getBoundingClientRect();
@@ -1325,6 +1250,7 @@
 
         function startInteraction(e) {
             isInteracting = true;
+            autoRotateEnabled = false;
             const x = e.clientX || e.touches[0].clientX;
             const y = e.clientY || e.touches[0].clientY;
             startAngle = calculateAngle(x, y) - currentAngle;
@@ -1343,11 +1269,8 @@
             
             const targetA = calculateAngle(x, y);
             currentAngle = targetA - startAngle;
-            
-            // Aplicar rotación visual
             vinyl.style.transform = `rotate(${currentAngle}deg)`;
             
-            // Calcular acumulación para el scratch
             scratchAccumulator += Math.abs(currentAngle - lastAngle);
             lastAngle = currentAngle;
 
@@ -1359,6 +1282,7 @@
 
         function endInteraction() {
             isInteracting = false;
+            autoRotateEnabled = true;
             if(arm) arm.style.transform = "rotate(14deg)";
             soundArea.classList.remove('bass-vibe-speakers');
             deckContainer.classList.remove('deck-scratch-shake');
@@ -1371,19 +1295,7 @@
         window.addEventListener('touchmove', moveInteraction, { passive: false });
         window.addEventListener('touchend', endInteraction);
 
-        // === 4. RELOJ REGRESIVO ===
-        const targetDate = new Date().getTime() + (37 * 24 * 60 * 60 * 1000);
-        function updateClock() {
-            const diff = targetDate - new Date().getTime();
-            if (diff <= 0) return;
-            document.getElementById('days').innerText = Math.floor(diff / (1000*60*60*24)).toString().padStart(2, '0');
-            document.getElementById('hours').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60)).toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000*60*60)) / (1000*60)).toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000*60)) / 1000).toString().padStart(2, '0');
-        }
-        setInterval(updateClock, 1000); updateClock();
-
-        // === 5. MOTOR DE ROTACIÓN AUTOMÁTICA Y PARTÍCULAS ===
+        // === MOTOR DE PARTÍCULAS ===
         const cnv = document.getElementById('particles-canvas');
         const ctx = cnv.getContext('2d');
         let cW = cnv.width = window.innerWidth;
@@ -1415,12 +1327,11 @@
         for(let i=0; i<35; i++) particles.push(new UrbanParticle());
 
         function coreLoop() {
-            // Rotación automática CONSTANTE solo cuando NO estás interactuando
-            if (!isInteracting) {
-                currentAngle += 0.5; // Velocidad de rotación automática
+            // Solo rota automáticamente si no está siendo controlado
+            if (autoRotateEnabled && !isInteracting) {
+                currentAngle += 0.85;
                 vinyl.style.transform = `rotate(${currentAngle}deg)`;
             }
-            
             ctx.clearRect(0,0,cW,cH);
             for(let i=0; i<particles.length; i++) { particles[i].process(); particles[i].render(); }
             requestAnimationFrame(coreLoop);
