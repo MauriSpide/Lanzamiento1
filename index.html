@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yo Soy MauriSpide - 7 Frecuencias Urbanas</title>
+    <title>Yo Soy MauriSpide - Single</title>
     <!-- Fuentes Urbanas e Industriales -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,15 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* TEXTURA CRT - Optimizada */
+        /* PARTÍCULAS DINÁMICAS */
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1; pointer-events: none;
+            image-rendering: pixelated;
+        }
+
+        /* TEXTURA CRT + DISTORSIÓN 90s */
         body::after {
             content: " ";
             display: block;
@@ -59,16 +67,24 @@
             background-size: 100% 3px, 6px 100%;
             pointer-events: none;
             will-change: transform;
+            filter: saturate(1.1) hue-rotate(-5deg);
+            mix-blend-mode: multiply;
         }
 
-        #particles-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; pointer-events: none;
-            image-rendering: pixelated;
+        /* DISTORSIÓN VINTAGE 90s */
+        @keyframes distort90s {
+            0% { filter: skewX(-0.5deg) saturate(1.15); }
+            25% { filter: skewX(0.3deg) saturate(1.12); }
+            50% { filter: skewX(-0.2deg) saturate(1.18); }
+            75% { filter: skewX(0.4deg) saturate(1.14); }
+            100% { filter: skewX(-0.5deg) saturate(1.15); }
         }
 
-        /* INTRO CINEMÁTICA */
+        .main-container {
+            animation: distort90s 8s infinite;
+        }
+
+        /* INTRO CINEMÁTICA MEJORADA */
         .intro-splash {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -106,19 +122,31 @@
             font-size: clamp(1.8rem, 5vw, 3.5rem);
             color: #fff;
             line-height: 1.3;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .intro-artists {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1rem, 3.5vw, 1.8rem);
+            color: var(--secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--secondary);
         }
 
         .intro-subtitle {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(0.9rem, 3vw, 1.3rem);
-            color: var(--secondary);
-            letter-spacing: 3px;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+            color: var(--accent);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px var(--secondary);
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px var(--accent);
         }
 
         .loading-bar-container {
@@ -339,9 +367,7 @@
             animation: shockWave 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
         }
 
-        /* =======================================================
-           NUEVO SISTEMA DE BOCINAS MODULARES MULTI-DISEÑO
-        ======================================================= */
+        /* SISTEMA DE BOCINAS MODULARES MULTI-DISEÑO */
         .speaker-box {
             width: 70px; height: 220px;
             background: linear-gradient(135deg, #0b0b0f 0%, #16161f 100%);
@@ -403,7 +429,6 @@
 
         .speaker-box:hover::before { color: var(--accent); }
 
-        /* CONTENEDOR INTERNO DE COMPONENTES ELECTRÓNICOS */
         .speaker-housing {
             width: 100%; height: 100%;
             display: flex; flex-direction: column;
@@ -413,7 +438,8 @@
             transition: opacity 0.15s ease;
         }
 
-        /* --- DISEÑO 1: BARRIO SUB-WOOFER CLASSIC --- */
+        /* DISEÑOS DE BOCINAS */
+        /* 1. JBL BOOMBOXES CLÁSICAS */
         .design-1 .cone-top {
             width: 35px; height: 35px;
             background: radial-gradient(circle at 30% 30%, #2d2d3a 0%, #16161f 50%, #0b0b0f 100%);
@@ -446,7 +472,7 @@
             border-color: var(--primary);
         }
 
-        /* --- DISEÑO 2: PROFESIONAL ASYMMETRIC --- */
+        /* 2. SONY MHC / GENEZI */
         .design-2 .cone-top {
             width: 25px; height: 25px;
             background: linear-gradient(135deg, #222 0%, #111 100%);
@@ -485,7 +511,7 @@
             box-shadow: 0 0 12px var(--primary);
         }
 
-        /* --- DISEÑO 3: MPC SAMPLER MATRIX --- */
+        /* 3. PIONEER DJ MONITORES */
         .design-3 { justify-content: center; gap: 6px; flex-wrap: wrap; }
         .design-3 .pad {
             width: 28px; height: 28px;
@@ -516,7 +542,7 @@
             border-color: #fff;
         }
 
-        /* --- DISEÑO 4: CYBERPUNK EQUALIZER --- */
+        /* 4. MARSHALL OLD-SCHOOL */
         .design-4 { justify-content: center; gap: 4px; width: 90%; padding: 0 5px; }
         .design-4 .eq-bar {
             width: 100%; height: 12px;
@@ -546,7 +572,7 @@
             box-shadow: 0 0 8px var(--secondary), inset 0 1px 0 rgba(255,255,255,0.1);
         }
 
-        /* --- DISEÑO 5: RF CORE NUCLEUS --- */
+        /* 5. AIWA MINICOMPONENTES */
         .design-5 .core-ring {
             width: 50px; height: 50px;
             border-radius: 50%;
@@ -596,7 +622,84 @@
             box-shadow: 0 0 10px #fff, inset 0 1px 2px rgba(255,255,255,0.5);
         }
 
-        /* TORNAMESA */
+        /* 6. CYBERPUNK NEON FUTURE */
+        .design-6 {
+            justify-content: center;
+            gap: 3px;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .design-6 .neon-bar {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff00ff, inset 0 0 4px rgba(255,255,255,0.3);
+        }
+
+        @media (min-width: 768px) {
+            .design-6 .neon-bar {
+                height: 12px;
+                box-shadow: 0 0 12px #ff00ff;
+            }
+        }
+
+        .bass-vibe-speakers .design-6 .neon-bar {
+            animation: neonFlicker 0.15s infinite;
+        }
+
+        /* 7. ANALOG RETRO VINYL */
+        .design-7 {
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .design-7 .vinyl-mini {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: repeating-radial-gradient(circle, #1a1a2e, #1a1a2e 2px, #0a0a12 4px, #1a1a2e 6px);
+            border: 2px solid #333;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .design-7 .vinyl-center-mini {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, var(--primary), #8b0027);
+            border-radius: 50%;
+            border: 1px solid #000;
+        }
+
+        @media (min-width: 768px) {
+            .design-7 .vinyl-mini {
+                width: 65px;
+                height: 65px;
+            }
+            .design-7 .vinyl-center-mini {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        .bass-vibe-speakers .design-7 .vinyl-mini {
+            animation: spinVinylMini 2s linear infinite;
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px var(--secondary), inset 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        /* TORNAMESA GIRATORIA CON MOUSE */
         .turntable-deck {
             background: linear-gradient(135deg, #0e0e14 0%, #040407 100%);
             border: 3px solid #1a1a24;
@@ -610,6 +713,11 @@
             width: 260px; height: 260px;
             z-index: 2;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: grab;
+        }
+
+        .turntable-deck:active {
+            cursor: grabbing;
         }
 
         @media (min-width: 768px) {
@@ -679,6 +787,7 @@
             position: relative;
             box-shadow: 0 8px 20px rgba(0,0,0,0.8), inset 0 2px 8px rgba(0,0,0,0.5);
             animation: spinVinyl 4s linear infinite paused;
+            transform-origin: center;
         }
 
         @media (min-width: 768px) {
@@ -721,7 +830,7 @@
             }
         }
 
-        /* PANEL DE 7 SECCIONES */
+        /* PANEL ÚNICO PARA SINGLE */
         .rapper-bio-panel {
             width: 100%;
             max-width: 620px;
@@ -838,7 +947,54 @@
             color: var(--secondary);
         }
 
-        /* CONTADOR INDUSTRIAL */
+        /* CRÉDITOS */
+        .credits-section {
+            width: 100%;
+            max-width: 700px;
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .credits-section {
+                padding: 25px;
+                border-left: 6px solid var(--secondary);
+                margin-top: 25px;
+            }
+        }
+
+        .credits-title {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .credit-item {
+            font-size: 0.9rem;
+            color: #f5f5fa;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .credit-label {
+            color: var(--secondary);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        /* COUNTDOWN */
         .countdown-container {
             background: var(--panel-bg);
             border: 2px solid #1a1a26;
@@ -936,6 +1092,7 @@
             }
         }
 
+        /* ANIMACIONES */
         @keyframes fadeOutIntro {
             to { opacity: 0; display: none; pointer-events: none; }
         }
@@ -1000,113 +1157,190 @@
             to { transform: scale(1.15); }
         }
 
-        @keyframes pulseText {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
-        }
-
         @keyframes spinVinyl {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        @keyframes spinVinylMini {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes neonFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes pulseText {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- CANVAS PARA PARTÍCULAS -->
     <canvas id="particles-canvas"></canvas>
 
+    <!-- INTRO CINEMÁTICA -->
     <div class="intro-splash">
         <div class="studio-monitor">
-            <div class="intro-subtitle">MauriSpide & LAIP.I Collective</div>
-            <div class="intro-text">PRESENTAN</div>
+            <div class="intro-artists">MauriSpide & LAIP.I Collective</div>
+            <div class="intro-text">PRESENTS...</div>
+            <div class="intro-subtitle">My First Single</div>
             <div class="loading-bar-container">
                 <div class="loading-bar"></div>
             </div>
         </div>
     </div>
 
+    <!-- CONTENEDOR PRINCIPAL -->
     <div class="main-container">
-        <header class="graffiti-header">
+        <!-- HEADER -->
+        <div class="graffiti-header">
+            <div class="street-star star-left">✦</div>
+            <div class="street-star star-right">✦</div>
             <div class="graffiti-halo"></div>
-            <span class="street-star star-left">★</span>
-            <h1 class="graffiti-title">Yo Soy MauriSpide</h1>
-            <span class="street-star star-right">★</span>
-            <div class="tagline-sencillo">7 Frecuencias Urbanas</div>
-        </header>
+            <h1 class="graffiti-title">YO SOY MAURISPIDE</h1>
+            <span class="tagline-sencillo">Nueva Frecuencia Urbana</span>
+        </div>
 
+        <!-- SISTEMA DE AUDIO -->
         <div class="sound-system-area">
             <div class="bass-wave-layer"></div>
-
+            
+            <!-- BOCINAS IZQUIERDAS -->
             <div class="speaker-box" data-design="1">
-                <div class="speaker-housing design-1">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
+                <div class="speaker-housing">
+                    <div class="design-1">
+                        <div class="cone-top"></div>
+                        <div class="cone-bottom"></div>
+                    </div>
                 </div>
             </div>
 
+            <div class="speaker-box" data-design="2">
+                <div class="speaker-housing">
+                    <div class="design-2">
+                        <div class="cone-top"></div>
+                        <div class="cone-bottom"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TURNTABLE CENTRAL -->
             <div class="turntable-deck">
                 <div class="turntable-arm"></div>
                 <div class="vinyl-wrapper">
                     <div class="vinyl">
                         <div class="vinyl-center">
-                            <div class="vinyl-center-art">MauriSpide</div>
+                            <div class="vinyl-center-art">SINGLE</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="speaker-box" data-design="1">
-                <div class="speaker-housing design-1">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
+            <!-- BOCINAS DERECHAS -->
+            <div class="speaker-box" data-design="3">
+                <div class="speaker-housing">
+                    <div class="design-3">
+                        <div class="pad"></div>
+                        <div class="pad"></div>
+                        <div class="pad"></div>
+                        <div class="pad"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-box" data-design="4">
+                <div class="speaker-housing">
+                    <div class="design-4">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- BOCINAS ADICIONALES (ABAJO) -->
+        <div style="display: flex; gap: 20px; justify-content: center; width: 100%; flex-wrap: wrap; margin-top: 20px;">
+            <div class="speaker-box" data-design="5">
+                <div class="speaker-housing">
+                    <div class="design-5">
+                        <div class="core-ring">
+                            <div class="core-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-box" data-design="6">
+                <div class="speaker-housing">
+                    <div class="design-6">
+                        <div class="neon-bar"></div>
+                        <div class="neon-bar"></div>
+                        <div class="neon-bar"></div>
+                        <div class="neon-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-box" data-design="7">
+                <div class="speaker-housing">
+                    <div class="design-7">
+                        <div class="vinyl-mini">
+                            <div class="vinyl-center-mini"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL ÚNICO DEL SINGLE -->
         <div class="rapper-bio-panel">
-            <div class="panel-decorator dec-top-left">✦</div>
+            <div class="panel-decorator dec-top-left">◊</div>
             <div class="bio-title">
-                Frecuencia 1 <span class="section-badge">INICIO</span>
+                Artista
+                <span class="section-badge">MAURISPIDE</span>
             </div>
-            <div class="bio-text">
-                Desde las calles del barrio hasta el corazón del hip-hop urbano, MauriSpide trae la vibra más cruda y real del movimiento. Cada beat es un testimonio de lucha, resistencia y pasión.
-            </div>
-            <div class="hint-tag">→ Frecuencia Desbloqueada</div>
+            <p class="bio-text">Un sencillo revolucionario que marca el debut de MauriSpide en la escena urbana. Frecuencia pura, sonido directo desde las calles.</p>
+            <div class="hint-tag">🎵 Nuevo Single 🎵</div>
             <div class="panel-decorator dec-bottom-right">◆</div>
         </div>
 
-        <div class="countdown-container">
-            <div class="countdown-title">Próximo Lanzamiento</div>
-            <div class="timer">
-                <div class="time-segment">
-                    <div class="time-number" id="days">00</div>
-                    <div class="time-label">DÍAS</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="hours">00</div>
-                    <div class="time-label">HORAS</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="minutes">00</div>
-                    <div class="time-label">MINUTOS</div>
-                </div>
-                <div class="time-segment">
-                    <div class="time-number" id="seconds">00</div>
-                    <div class="time-label">SEGUNDOS</div>
-                </div>
+        <!-- SECCIÓN DE CRÉDITOS -->
+        <div class="credits-section">
+            <div class="credits-title">Créditos de Producción</div>
+            <div class="credit-item">
+                <div class="credit-label">Artista</div>
+                MauriSpide
+            </div>
+            <div class="credit-item">
+                <div class="credit-label">Sello Discográfico</div>
+                LAIP.I Music Songs
+            </div>
+            <div class="credit-item">
+                <div class="credit-label">Producción</div>
+                MauriSpide (Mcra.FtS)
+            </div>
+            <div class="credit-item">
+                <div class="credit-label">Arte & Diseño</div>
+                LAIP.I Collective
+            </div>
+            <div class="credit-item">
+                <div class="credit-label">Composición</div>
+                MauriSpide
             </div>
         </div>
     </div>
 
     <script>
-        // =================== SISTEMA DE PARTÍCULAS ===================
+        // SISTEMA DE PARTÍCULAS
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 80;
 
         class Particle {
             constructor() {
@@ -1115,174 +1349,143 @@
                 this.vx = (Math.random() - 0.5) * 2;
                 this.vy = (Math.random() - 0.5) * 2;
                 this.size = Math.random() * 2 + 0.5;
-                this.opacity = Math.random() * 0.5 + 0.3;
-                this.color = Math.random() > 0.5 ? '#ff0055' : '#00ffcc';
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 0, 85, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.opacity -= 0.005;
 
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
 
-                if (this.opacity <= 0) {
-                    this.opacity = Math.random() * 0.5 + 0.3;
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                }
-            }
-
-            draw() {
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.globalAlpha = 1;
+                this.opacity += (Math.random() - 0.5) * 0.02;
+                this.opacity = Math.max(0.1, Math.min(0.7, this.opacity));
             }
         }
 
-        function initParticles() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
+        const particles = Array.from({ length: 50 }, () => new Particle());
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             particles.forEach(p => {
                 p.update();
                 p.draw();
             });
-
             requestAnimationFrame(animateParticles);
         }
+
+        animateParticles();
 
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
-        initParticles();
-        animateParticles();
+        // SISTEMA DE CAMBIO DE DISEÑO DE BOCINAS
+        const speakerBoxes = document.querySelectorAll('.speaker-box');
+        const designs = [1, 2, 3, 4, 5, 6, 7];
+        let currentDesignIndex = 0;
 
-        // =================== SISTEMA DE BOCINAS ===================
-        const designCount = 5;
-        let currentDesigns = { left: 1, right: 1 };
+        speakerBoxes.forEach(box => {
+            box.addEventListener('click', function() {
+                currentDesignIndex = (currentDesignIndex + 1) % designs.length;
+                const newDesign = designs[currentDesignIndex];
+                
+                speakerBoxes.forEach(b => {
+                    const housing = b.querySelector('.speaker-housing');
+                    housing.innerHTML = getDesignHTML(newDesign);
+                    b.setAttribute('data-design', newDesign);
+                });
+
+                // Efecto visual
+                speakerBoxes.forEach(b => {
+                    b.style.opacity = '0.5';
+                    setTimeout(() => {
+                        b.style.opacity = '1';
+                        b.style.transition = 'opacity 0.3s ease';
+                    }, 100);
+                });
+            });
+        });
 
         function getDesignHTML(design) {
             const designs = {
-                1: `<div class="design-1">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
-                </div>`,
-                2: `<div class="design-2">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
-                </div>`,
-                3: `<div class="design-3">
-                    <div class="pad"></div>
-                    <div class="pad"></div>
-                    <div class="pad"></div>
-                    <div class="pad"></div>
-                </div>`,
-                4: `<div class="design-4">
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                </div>`,
-                5: `<div class="design-5">
-                    <div class="core-ring">
-                        <div class="core-dot"></div>
-                    </div>
-                </div>`
+                1: `<div class="design-1"><div class="cone-top"></div><div class="cone-bottom"></div></div>`,
+                2: `<div class="design-2"><div class="cone-top"></div><div class="cone-bottom"></div></div>`,
+                3: `<div class="design-3"><div class="pad"></div><div class="pad"></div><div class="pad"></div><div class="pad"></div></div>`,
+                4: `<div class="design-4"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>`,
+                5: `<div class="design-5"><div class="core-ring"><div class="core-dot"></div></div></div>`,
+                6: `<div class="design-6"><div class="neon-bar"></div><div class="neon-bar"></div><div class="neon-bar"></div><div class="neon-bar"></div></div>`,
+                7: `<div class="design-7"><div class="vinyl-mini"><div class="vinyl-center-mini"></div></div></div>`
             };
             return designs[design];
         }
 
-        document.querySelectorAll('.speaker-box').forEach((box, index) => {
-            box.addEventListener('click', () => {
-                const isLeft = index === 0;
-                const key = isLeft ? 'left' : 'right';
-                let nextDesign = currentDesigns[key] + 1;
-                if (nextDesign > designCount) nextDesign = 1;
-                currentDesigns[key] = nextDesign;
-
-                const housing = box.querySelector('.speaker-housing');
-                housing.innerHTML = getDesignHTML(nextDesign);
-                housing.className = `speaker-housing design-${nextDesign}`;
-
-                // Efecto visual
-                box.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    box.style.transform = '';
-                }, 100);
-            });
-        });
-
-        // =================== CONTADOR REGRESIVO ===================
-        function updateCountdown() {
-            const launchDate = new Date('2026-06-30').getTime();
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-
-            if (distance < 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // =================== ANIMACIÓN VINYL ===================
+        // GIRAR VINILO CON MOUSE
+        const turntable = document.querySelector('.turntable-deck');
         const vinyl = document.querySelector('.vinyl');
-        let isSpinning = false;
+        let isRotating = false;
+        let lastAngle = 0;
 
-        document.querySelector('.turntable-deck').addEventListener('click', () => {
-            isSpinning = !isSpinning;
-            if (isSpinning) {
-                vinyl.classList.add('spinning');
-            } else {
-                vinyl.classList.remove('spinning');
-            }
+        turntable.addEventListener('mousedown', () => {
+            isRotating = true;
+            vinyl.style.animation = 'none';
         });
 
-        // =================== BASS WAVE EFFECT ===================
-        document.querySelectorAll('.speaker-box').forEach((box, index) => {
-            box.addEventListener('click', () => {
-                const wave = document.querySelector('.bass-wave-layer');
-                wave.classList.remove('wave-active');
-                void wave.offsetWidth;
-                wave.classList.add('wave-active');
-            });
+        turntable.addEventListener('mouseup', () => {
+            isRotating = false;
+            vinyl.classList.add('spinning');
         });
 
-        // =================== HOVER BASS EFFECT ===================
-        document.querySelectorAll('.speaker-box').forEach(box => {
-            box.addEventListener('mouseenter', () => {
-                box.classList.add('bass-vibe-speakers');
-            });
-            box.addEventListener('mouseleave', () => {
-                box.classList.remove('bass-vibe-speakers');
-            });
+        turntable.addEventListener('mouseleave', () => {
+            isRotating = false;
+            vinyl.classList.add('spinning');
         });
+
+        turntable.addEventListener('mousemove', (e) => {
+            if (!isRotating) return;
+
+            const rect = turntable.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const x = e.clientX - rect.left - centerX;
+            const y = e.clientY - rect.top - centerY;
+
+            const angle = Math.atan2(y, x) * (180 / Math.PI);
+            const rotation = (angle + 90) % 360;
+
+            vinyl.style.transform = `rotate(${rotation}deg)`;
+            vinyl.classList.remove('spinning');
+        });
+
+        // EFECTO BASS VIBE EN BOCINAS
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(() => {
+                const randomBox = speakerBoxes[Math.floor(Math.random() * speakerBoxes.length)];
+                randomBox.classList.add('bass-vibe-speakers');
+                setTimeout(() => {
+                    randomBox.classList.remove('bass-vibe-speakers');
+                }, 150);
+            }, 500);
+        });
+
+        // ACTIVAR ONDAS DE CHOQUE OCASIONALES
+        setInterval(() => {
+            const wave = document.querySelector('.bass-wave-layer');
+            wave.classList.remove('wave-active');
+            void wave.offsetWidth;
+            wave.classList.add('wave-active');
+        }, 2000);
     </script>
 </body>
 </html>
