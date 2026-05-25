@@ -796,6 +796,10 @@
             cursor: grabbing;
         }
 
+        .vinyl.scratching {
+            animation: none !important;
+        }
+
         @media (min-width: 768px) {
             .vinyl {
                 box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 2px 10px rgba(0,0,0,0.5);
@@ -998,413 +1002,251 @@
             background: rgba(255,255,255,0.02); transform: scale(1.03);
         }
         .credit-label { color: #3d3d4e; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 800; transition: color 0.2s; }
-        .credit-value { color: #fff; font-weight: 800; font-size: 1.1rem; transition: color 0.2s; }
-        
-        .credit-item:hover .credit-label { color: #fff; }
-        .credit-item:hover .credit-value { color: var(--secondary); }
 
-        /* ANIMACIONES CSS */
-        @keyframes loadProgress { to { width: 100%; } }
-        @keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-        @keyframes fadeInMain { to { opacity: 1; } }
-        @keyframes blink { from { opacity: 0.1; } to { opacity: 1; } }
-        @keyframes pulseText { from { opacity: 0.4; } to { opacity: 1; } }
-        
-        @keyframes haloPulse {
-            0% { transform: translateX(-50%) rotate(-3deg) scale(0.97); filter: brightness(0.9); }
-            100% { transform: translateX(-50%) rotate(-2deg) scale(1.03); filter: brightness(1.2); }
-        }
-        @keyframes starRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        @keyframes speakerPunch {
-            0% { transform: scale(1); filter: contrast(1); }
-            100% { transform: scale(1.09); filter: contrast(1.4); }
-        }
-        @keyframes deckVibe {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            100% { transform: translate(-1px, -1px) rotate(0.5deg); }
-        }
-        @keyframes shockWave {
-            0% { transform: scale(1); opacity: 0.8; border-color: var(--primary); }
-            100% { transform: scale(1.3); opacity: 0; border-color: var(--secondary); }
-        }
-        @keyframes spinVinyl {
-            to { transform: rotate(360deg); }
-        }
-        @keyframes spinVinylMini {
-            to { transform: rotate(360deg); }
-        }
-        @keyframes neonFlicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @media (max-width: 680px) {
-            .speaker-box { display: none; }
-            .turntable-arm { display: none; }
-        }
+        @keyframes spinVinyl { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spinVinylMini { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes haloPulse { 0% { transform: translateX(-50%) rotate(-3deg) scale(1); } 100% { transform: translateX(-50%) rotate(-3deg) scale(1.1); } }
+        @keyframes starRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeOutIntro { 0% { opacity: 1; } 100% { opacity: 0; pointer-events: none; } }
+        @keyframes fadeInMain { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes shockWave { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 100%; height: 100%; opacity: 0; } }
+        @keyframes speakerPunch { 0% { transform: scale(1); } 100% { transform: scale(0.85); } }
+        @keyframes neonFlicker { 0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: 0.3; } }
+        @keyframes pulseText { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.3; } }
     </style>
 </head>
 <body>
-
     <canvas id="particles-canvas"></canvas>
-
-    <!-- INTRO DE ESTUDIO -->
+    
     <div class="intro-splash">
         <div class="studio-monitor">
-            <div class="intro-text">
-                MAURISPIDE<br>
-                <span style="font-size: 1.1rem; color: #444; font-family: 'Space Grotesk'; font-weight:800; letter-spacing: 3px;">INITIALIZING 7-TRACK ENGINE</span><br>
-                LAIP.I COLLECTIVE
-            </div>
+            <div class="intro-text">YO SOY MAURISPIDE</div>
+            <div class="intro-artists">7 FRECUENCIAS URBANAS</div>
+            <div class="intro-subtitle">Cargando...</div>
             <div class="loading-bar-container">
                 <div class="loading-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- INTERFAZ COMPLETA -->
     <div class="main-container">
-        
-        <header class="graffiti-header">
+        <div class="graffiti-header">
             <div class="graffiti-halo"></div>
-            <div class="street-star star-left">★</div>
-            <div class="street-star star-right">★</div>
-            <h1 class="graffiti-title">Yo Soy MauriSpide</h1>
-            <center><div class="tagline-sencillo">PRIMER SENCILLO</div></center>
-        </header>
+            <span class="street-star star-left">★</span>
+            <h1 class="graffiti-title">YO SOY<br>MAURISPIDE</h1>
+            <div class="tagline-sencillo">7 FRECUENCIAS URBANAS</div>
+            <span class="street-star star-right">★</span>
+        </div>
 
-        <!-- AREA DE TRABAJO ACÚSTICA REACTIVA -->
-        <div class="sound-system-area" id="sound-area">
-            
-            <div class="bass-wave-layer" id="shock-wave"></div>
+        <div class="sound-system-area">
+            <div class="bass-wave-layer"></div>
 
-            <!-- Bocina Izquierda -->
-            <div class="speaker-box" id="speaker-left">
-                <div class="speaker-housing design-1" id="housing-left">
+            <div class="speaker-box design-1 bass-vibe-speakers">
+                <div class="speaker-housing">
                     <div class="cone-top"></div>
                     <div class="cone-bottom"></div>
                 </div>
             </div>
 
-            <!-- Cubierta de Tornamesa -->
-            <div class="turntable-deck" id="turntable-deck">
-                <div class="turntable-arm" id="turntable-arm"></div>
+            <div class="speaker-box design-2 bass-vibe-speakers">
+                <div class="speaker-housing">
+                    <div class="cone-top"></div>
+                    <div class="cone-bottom"></div>
+                </div>
+            </div>
+
+            <div class="turntable-deck">
+                <div class="turntable-arm"></div>
                 <div class="vinyl-wrapper">
-                    <div class="vinyl" id="interactive-vinyl">
+                    <div class="vinyl" id="vinyl">
                         <div class="vinyl-center">
-                            <div class="vinyl-center-art">Mauri<br><span style="color:var(--secondary); font-size:0.75rem;">SPIDE</span></div>
+                            <div class="vinyl-center-art">7<br>FREQ</div>
                         </div>
-                        <div class="vinyl-hole"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bocina Derecha -->
-            <div class="speaker-box" id="speaker-right">
-                <div class="speaker-housing design-1" id="housing-right">
-                    <div class="cone-top"></div>
-                    <div class="cone-bottom"></div>
+            <div class="speaker-box design-3 bass-vibe-speakers">
+                <div class="speaker-housing">
+                    <div class="pad pad-active"></div>
+                    <div class="pad"></div>
+                    <div class="pad pad-active"></div>
+                    <div class="pad"></div>
                 </div>
             </div>
 
+            <div class="speaker-box design-4 bass-vibe-speakers">
+                <div class="speaker-housing">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- DISPLAY DINÁMICO DE 7 SECCIONES -->
-        <section class="rapper-bio-panel" id="bio-panel">
-            <div class="panel-decorator dec-top-left">★</div>
-            <div class="panel-decorator dec-bottom-right">✦</div>
-            <div class="bio-title">
-                <span id="bio-header">FRECUENCIA #1: ORIGEN DEL TRACK</span>
-                <span class="section-badge" id="section-counter">1 / 7</span>
-            </div>
-            <div class="bio-text" id="bio-content">
-                MauriSpide, representante del rap Mexicano, emergente desde el Estado de México llega con su primer sencillo "Yo soy MauriSpide" de la mano de LAIP.I Music Songs.
-            </div>
-            <div class="hint-tag">🎛️ GIRA O HAZ SCRATCH EN EL VINILO PARA CONMUTAR 🎛️</div>
-        </section>
-
-        <!-- CONTADOR INDUSTRIAL -->
-        <div class="countdown-container">
+        <div class="rapper-bio-panel">
             <div class="panel-decorator dec-top-left">✦</div>
-            <div class="panel-decorator dec-bottom-right">★</div>
-            <div class="countdown-title">Tiempo restante para la detonación en plataformas</div>
-            <div class="timer" id="countdown-timer">
-                <div class="time-segment">
-                    <div class="time-number" id="days">37</div>
-                    <div class="time-label">Días</div>
+            <div class="bio-title">
+                FRECUENCIA I <span class="section-badge">INTRO</span>
+            </div>
+            <div class="bio-text">MauriSpide es un artista urbano que representa la fusión entre beats, ritmo y energía del hip-hop moderno. Sus 7 Frecuencias son la esencia de un movimiento cultural.</div>
+            <div class="hint-tag">↻ HAZ CLICK PARA PASAR</div>
+            <div class="panel-decorator dec-bottom-right">✦</div>
+        </div>
+
+        <div class="countdown-container">
+            <div class="panel-decorator dec-top-left">◆</div>
+            <div class="countdown-title">PRÓXIMO LANZAMIENTO</div>
+            <div class="timer">
+                <div>
+                    <div class="time-number">07</div>
+                    <div class="time-label">DÍAS</div>
                 </div>
-                <div class="time-segment">
-                    <div class="time-number" id="hours">00</div>
-                    <div class="time-label">Horas</div>
+                <div>
+                    <div class="time-number">12</div>
+                    <div class="time-label">HORAS</div>
                 </div>
-                <div class="time-segment">
-                    <div class="time-number" id="minutes">00</div>
-                    <div class="time-label">Minutos</div>
+            </div>
+            <div class="panel-decorator dec-bottom-right">◆</div>
+        </div>
+
+        <div class="credits-board">
+            <div class="credits-grid">
+                <div class="credit-item">
+                    <div class="credit-label">PRODUCTOR</div>
+                    <div style="font-size: 1rem; margin-top: 6px; color: #fff;">MauriSpide</div>
                 </div>
-                <div class="time-segment">
-                    <div class="time-number" id="seconds">00</div>
-                    <div class="time-label">Segundos</div>
+                <div class="credit-item">
+                    <div class="credit-label">MIXING</div>
+                    <div style="font-size: 1rem; margin-top: 6px; color: #fff;">Studio Urbano</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">MASTERING</div>
+                    <div style="font-size: 1rem; margin-top: 6px; color: #fff;">7 Freq.</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">DISEÑO WEB</div>
+                    <div style="font-size: 1rem; margin-top: 6px; color: #fff;">Digital Labs</div>
                 </div>
             </div>
         </div>
-
-        <!-- SECCIÓN FIJA DE CRÉDITOS EJECUTIVOS -->
-        <footer class="credits-board">
-            <div class="credits-grid">
-                <div class="credit-item"><span class="credit-label">Autor Principal</span><div class="credit-value">MauriSpide</div></div>
-                <div class="credit-item"><span class="credit-label">Composición</span><div class="credit-value">MaurSpide</div></div>
-                <div class="credit-item"><span class="credit-label">Ing. de Mezcla</span><div class="credit-value" style="color:var(--accent);">Mau (Mcra.FtS)</div></div>
-                <div class="credit-item"><span class="credit-label">Dirección Artística</span><div class="credit-value">LAIP.I Collective</div></div>
-                <div class="credit-item"><span class="credit-label">Distribuidora</span><div class="credit-value" style="color:var(--secondary);">LAIP.I Music Songs</div></div>
-            </div>
-        </footer>
-
     </div>
 
     <script>
-        // === 1. ARQUITECTURA DE LAS 7 SECCIONES INFORMATIVAS ===
-        const infoSections = [
-            {
-                title: "FRECUENCIA #1: ORIGEN DE LA ESCENA",
-                text: "MauriSpide, representante del rap Mexicano, emergente desde el Estado de México llega con su primer sencillo \"Yo soy MauriSpide\" de la mano de LAIP.I Music Songs."
-            },
-            {
-                title: "FRECUENCIA #2: FILOSOFÍA DE BARRIO",
-                text: "Inspirado de barras crudas y callejeras viene a representar su convicción en el hip-hop, retratando la realidad acústica del asfalto mexiquense."
-            },
-            {
-                title: "FRECUENCIA #3: ARQUITECTURA DEL BEAT",
-                text: "Respaldado en las frecuencias y arreglos duros por Mau (Mcra.FtS), inyectando samples oscuros de la vieja escuela y un bajo pesado que hace templar las estructuras."
-            },
-            {
-                title: "FRECUENCIA #4: COLECTIVO DE VANGUARDIA",
-                text: "El soporte conceptual y la identidad visual corre por cuenta de LAIP.I Collective, fusionando la esencia del graffiti ilegal con el diseño gráfico de alto nivel técnico."
-            },
-            {
-                title: "FRECUENCIA #5: INGENIERÍA DE AUDIO",
-                text: "El track cuenta con un tratamiento sonoro agresivo y pulido, diseñado minuciosamente para retumbar tanto en audífonos de calle como en los monitores de un auto."
-            },
-            {
-                title: "FRECUENCIA #6: LANZAMIENTO GLOBAL",
-                text: "La distribución corre por parte de LAIP.I Music Songs, asegurando la salida simultánea en todas las plataformas de streaming digital del planeta de forma masiva."
-            },
-            {
-                title: "FRECUENCIA #7: LA CUENTA REGRESIVA",
-                text: "37 días nos separan del impacto definitivo. Los motores están encendidos, las maquetas cerradas y el trono listo para ser reclamado por MauriSpide."
-            }
-        ];
-        
-        let currentSectionIdx = 0;
-        const bioContent = document.getElementById('bio-content');
-        const bioHeader = document.getElementById('bio-header');
-        const sectionBadge = document.getElementById('section-counter');
+        // Variables para el scratch del vinilo
+        let vinyl = document.getElementById('vinyl');
+        let isScratchin = false;
+        let lastY = 0;
+        let rotation = 0;
 
-        function triggerNextSection() {
-            currentSectionIdx = (currentSectionIdx + 1) % infoSections.length;
-            
-            bioContent.style.opacity = 0;
-            bioContent.style.transform = "translateY(5px)";
-            
-            setTimeout(() => {
-                bioHeader.innerText = infoSections[currentSectionIdx].title;
-                bioContent.innerText = infoSections[currentSectionIdx].text;
-                sectionBadge.innerText = `${currentSectionIdx + 1} / 7`;
+        // Detección de mouse down en el vinilo
+        vinyl.addEventListener('mousedown', (e) => {
+            isScratchin = true;
+            lastY = e.clientY;
+            vinyl.classList.add('scratching');
+        });
+
+        // Detección de mouse move en cualquier lugar
+        document.addEventListener('mousemove', (e) => {
+            if (isScratchin) {
+                const deltaY = e.clientY - lastY;
                 
-                bioContent.style.opacity = 1;
-                bioContent.style.transform = "translateY(0px)";
-                mutateColors();
-                triggerShockWave();
-            }, 120);
-        }
+                // Controlar la rotación según el movimiento del mouse (arriba/abajo)
+                // Sensibilidad: 2 grados por pixel
+                rotation += deltaY * 2;
+                
+                // Aplicar la rotación al vinilo
+                vinyl.style.transform = `rotate(${rotation}deg)`;
+                
+                lastY = e.clientY;
+            }
+        });
 
-        // === 2. CAMBIO DE COLORES CROMÁTICO ===
-        const urbanPalettes = [
-            { primary: '#ff0055', secondary: '#00ffcc', accent: '#ffcc00', bg: '#040406' },
-            { primary: '#00ffcc', secondary: '#ff00aa', accent: '#ffffff', bg: '#020606' },
-            { primary: '#ffcc00', secondary: '#0077ff', accent: '#ff3300', bg: '#060502' },
-            { primary: '#b700ff', secondary: '#00ff66', accent: '#ffff00', bg: '#050207' }
-        ];
-        let paletteIdx = 0;
+        // Detección de mouse up en cualquier lugar
+        document.addEventListener('mouseup', () => {
+            isScratchin = false;
+            vinyl.classList.remove('scratching');
+        });
 
-        function mutateColors() {
-            paletteIdx = (paletteIdx + 1) % urbanPalettes.length;
-            const p = urbanPalettes[paletteIdx];
-            
-            document.documentElement.style.setProperty('--primary', p.primary);
-            document.documentElement.style.setProperty('--secondary', p.secondary);
-            document.documentElement.style.setProperty('--accent', p.accent);
-            document.documentElement.style.setProperty('--bg-dark', p.bg);
-            document.documentElement.style.setProperty('--glow', p.primary);
+        // También soportar touch para dispositivos móviles
+        vinyl.addEventListener('touchstart', (e) => {
+            isScratchin = true;
+            lastY = e.touches[0].clientY;
+            vinyl.classList.add('scratching');
+        });
 
-            const deck = document.getElementById('turntable-deck');
-            deck.style.borderColor = p.primary;
-        }
+        document.addEventListener('touchmove', (e) => {
+            if (isScratchin) {
+                const deltaY = e.touches[0].clientY - lastY;
+                rotation += deltaY * 2;
+                vinyl.style.transform = `rotate(${rotation}deg)`;
+                lastY = e.touches[0].clientY;
+            }
+        });
 
-        function triggerShockWave() {
-            const wave = document.getElementById('shock-wave');
-            wave.classList.remove('wave-active');
-            void wave.offsetWidth; 
-            wave.classList.add('wave-active');
-        }
+        document.addEventListener('touchend', () => {
+            isScratchin = false;
+            vinyl.classList.remove('scratching');
+        });
 
-        // === 3. SISTEMA MODULAR DE INTERCAMBIO DE BOCINAS (5 DISEÑOS) ===
-        let currentSpeakerDesign = 1;
-        const totalDesigns = 5;
-        const housingLeft = document.getElementById('housing-left');
-        const housingRight = document.getElementById('housing-right');
+        // Animación de partículas (opcional)
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
 
-        const templates = {
-            1: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
-            2: `<div class="cone-top"></div><div class="cone-bottom"></div>`,
-            3: `<div class="pad pad-active"></div><div class="pad"></div><div class="pad"></div><div class="pad pad-active"></div>`,
-            4: `<div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>`,
-            5: `<div class="core-ring"><div class="core-dot"></div></div>`
-        };
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        function cycleSpeakerDesign() {
-            currentSpeakerDesign = (currentSpeakerDesign % totalDesigns) + 1;
-            
-            [housingLeft, housingRight].forEach(housing => {
-                housing.style.opacity = 0;
-                setTimeout(() => {
-                    housing.className = `speaker-housing design-${currentSpeakerDesign}`;
-                    housing.innerHTML = templates[currentSpeakerDesign];
-                    housing.style.opacity = 1;
-                }, 150);
-            });
-            triggerShockWave();
-        }
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
-        document.getElementById('speaker-left').addEventListener('click', cycleSpeakerDesign);
-        document.getElementById('speaker-right').addEventListener('click', cycleSpeakerDesign);
+        // Partículas simples
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.25;
+            }
 
-        // === 4. RELOJ REGRESIVO ===
-        const targetDate = new Date().getTime() + (37 * 24 * 60 * 60 * 1000);
-        function updateClock() {
-            const diff = targetDate - new Date().getTime();
-            if (diff <= 0) return;
-            document.getElementById('days').innerText = Math.floor(diff / (1000*60*60*24)).toString().padStart(2, '0');
-            document.getElementById('hours').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60)).toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000*60*60)) / (1000*60)).toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000*60)) / 1000).toString().padStart(2, '0');
-        }
-        setInterval(updateClock, 1000); updateClock();
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-        // === 5. CONTROLADOR DE VINILO (GIRO + SCRATCH) ===
-        const vinyl = document.getElementById('interactive-vinyl');
-        const arm = document.getElementById('turntable-arm');
-        const soundArea = document.getElementById('sound-area');
-        const deckContainer = document.getElementById('turntable-deck');
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
 
-        let isInteracting = false;
-        let currentAngle = 0;
-        let startAngle = 0;
-        let lastAngle = 0;
-        let scratchAccumulator = 0;
-
-        function getCenter() {
-            const box = vinyl.getBoundingClientRect();
-            return { x: box.left + box.width/2, y: box.top + box.height/2 };
-        }
-
-        function calculateAngle(px, py) {
-            const center = getCenter();
-            return Math.atan2(py - center.y, px - center.x) * (180 / Math.PI);
-        }
-
-        function startInteraction(e) {
-            isInteracting = true;
-            const x = e.clientX || e.touches[0].clientX;
-            const y = e.clientY || e.touches[0].clientY;
-            startAngle = calculateAngle(x, y) - currentAngle;
-            lastAngle = currentAngle;
-            scratchAccumulator = 0;
-            
-            if(arm) arm.style.transform = "rotate(23deg)";
-            soundArea.classList.add('bass-vibe-speakers');
-            deckContainer.classList.add('deck-scratch-shake');
-        }
-
-        function moveInteraction(e) {
-            if (!isInteracting) return;
-            const x = e.clientX || (e.touches && e.touches[0].clientX);
-            const y = e.clientY || (e.touches && e.touches[0].clientY);
-            
-            const targetA = calculateAngle(x, y);
-            currentAngle = targetA - startAngle;
-            
-            // Aplicar rotación visual
-            vinyl.style.transform = `rotate(${currentAngle}deg)`;
-            
-            // Calcular acumulación para el scratch
-            scratchAccumulator += Math.abs(currentAngle - lastAngle);
-            lastAngle = currentAngle;
-
-            if (scratchAccumulator > 150) {
-                triggerNextSection();
-                scratchAccumulator = 0;
+            draw() {
+                ctx.fillStyle = `rgba(0, 255, 204, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        function endInteraction() {
-            isInteracting = false;
-            if(arm) arm.style.transform = "rotate(14deg)";
-            soundArea.classList.remove('bass-vibe-speakers');
-            deckContainer.classList.remove('deck-scratch-shake');
+        let particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
         }
 
-        vinyl.addEventListener('mousedown', startInteraction);
-        window.addEventListener('mousemove', moveInteraction);
-        window.addEventListener('mouseup', endInteraction);
-        vinyl.addEventListener('touchstart', startInteraction, { passive: true });
-        window.addEventListener('touchmove', moveInteraction, { passive: false });
-        window.addEventListener('touchend', endInteraction);
-
-        // === 6. MOTOR DE PARTÍCULAS SUBTERRÁNEAS ===
-        const cnv = document.getElementById('particles-canvas');
-        const ctx = cnv.getContext('2d');
-        let cW = cnv.width = window.innerWidth;
-        let cH = cnv.height = window.innerHeight;
-
-        window.addEventListener('resize', () => { cW = cnv.width = window.innerWidth; cH = cnv.height = window.innerHeight; });
-
-        const assets = ['♫', '★', '⚡', '✦'];
-        const particles = [];
-
-        class UrbanParticle {
-            constructor() { this.init(); this.y = Math.random()*cH; }
-            init() {
-                this.x = Math.random()*cW; this.y = cH + 25;
-                this.size = Math.random()*11 + 5;
-                this.speedY = Math.random()*0.6 + 0.3;
-                this.char = assets[Math.floor(Math.random()*assets.length)];
-                this.alpha = Math.random()*0.2 + 0.08;
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
             }
-            process() { this.y -= this.speedY; if(this.y < -25) this.init(); }
-            render() {
-                ctx.save(); ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
-                ctx.font = `800 ${this.size * 1.1}px 'Space Grotesk'`;
-                ctx.fillText(this.char, this.x, this.y); ctx.restore();
-            }
+            requestAnimationFrame(animateParticles);
         }
 
-        for(let i=0; i<35; i++) particles.push(new UrbanParticle());
-
-        function coreLoop() {
-            if (!isInteracting) {
-                currentAngle += 0.85; // Rotación automática constante
-                vinyl.style.transform = `rotate(${currentAngle}deg)`;
-            }
-            ctx.clearRect(0,0,cW,cH);
-            for(let i=0; i<particles.length; i++) { particles[i].process(); particles[i].render(); }
-            requestAnimationFrame(coreLoop);
-        }
-        coreLoop();
+        animateParticles();
     </script>
 </body>
 </html>
